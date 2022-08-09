@@ -1,7 +1,10 @@
-import { Text, Button } from "@chakra-ui/react"
+import { Text, Button, Box, Heading } from "@chakra-ui/react"
 import Link from "next/link"
 import { useState } from "react"
 import * as web3 from "@solana/web3.js"
+
+import Layout from "components/layout"
+import Guide from "components/guide"
 
 async function initializeKeypair() {
   const keypair = await web3.Keypair.generate()
@@ -57,13 +60,18 @@ function Page() {
   }
 
   return (
-    <>
-      <Text>02 - Write data to the blockchain</Text>
+    <Layout>
+      <Box my={10}>
+        <Heading as="h2" my={5} fontSize="xl">
+          02 - Create and send transaction to the network
+        </Heading>
+        <Button onClick={createAndSendTransaction}>send transaction</Button>
+        {txSignature && <Text>txSignature: {txSignature}</Text>}
+        {error && <Text>error: {error}</Text>}
+      </Box>
 
-      <Button onClick={createAndSendTransaction}>send transaction</Button>
-      {txSignature && <Text>txSignature: {txSignature}</Text>}
-      {error && <Text>error: {error}</Text>}
-    </>
+      <Guide />
+    </Layout>
   )
 }
 

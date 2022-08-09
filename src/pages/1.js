@@ -1,6 +1,9 @@
-import { Text, Input, Button } from "@chakra-ui/react"
+import { Text, Input, Button, Box, Heading } from "@chakra-ui/react"
 import { useState } from "react"
 import { Connection, clusterApiUrl, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js"
+
+import Layout from "components/layout"
+import Guide from "components/guide"
 
 async function getSolBalance(address) {
   const connection = new Connection(clusterApiUrl("devnet"))
@@ -21,14 +24,20 @@ function Page() {
   }
 
   return (
-    <>
-      <Text>01 - Read balance from the Solana network</Text>
+    <Layout>
+      <Box my={10}>
+        <Heading as="h2" my={5} fontSize="xl">
+          01 - Read balance from the Solana network
+        </Heading>
 
-      <Input placeholder="input address" value={address} onChange={onAddressChange} />
-      <Button onClick={getBalance}>Get balance</Button>
+        <Input placeholder="input address" value={address} onChange={onAddressChange} />
+        <Button onClick={getBalance}>Get balance</Button>
 
-      <Text>balance: {balance / LAMPORTS_PER_SOL}</Text>
-    </>
+        <Text>balance: {balance / LAMPORTS_PER_SOL}</Text>
+      </Box>
+
+      <Guide />
+    </Layout>
   )
 }
 
