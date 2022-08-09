@@ -1,6 +1,12 @@
 import { Text, Box, Heading, Stack, Input, Button } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
-import { LAMPORTS_PER_SOL, Transaction, SystemProgram, PublicKey, TransactionInstruction } from "@solana/web3.js"
+import {
+  LAMPORTS_PER_SOL,
+  Transaction,
+  SystemProgram,
+  PublicKey,
+  TransactionInstruction,
+} from "@solana/web3.js"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { useWallet, useConnection } from "@solana/wallet-adapter-react"
 

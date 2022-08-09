@@ -1,4 +1,6 @@
-export default class Movie {
+import * as borsh from "@project-serum/borsh"
+
+class Movie {
   constructor(title, rating, description) {
     this.title = title
     this.rating = rating
@@ -27,4 +29,23 @@ export default class Movie {
       `The Dark Knight is a 2008 superhero film directed, produced, and co-written by Christopher Nolan. Batman, in his darkest hour, faces his greatest challenge yet: he must become the symbol of the opposite of the Batmanian order, the League of Shadows.`
     ),
   ]
+
+  borshInstructionSchema = borsh.struct([
+    borsh.u8("variant"),
+    borsh.str("title"),
+    borsh.u8("rating"),
+    borsh.str("description"),
+  ])
+
+  serialize() {
+    const buffer = Buffer.alloc(1000)
+    this.borshInstructionSchema.encode(
+      { title: this.title, rating: this.rating, description: this.description, variant: 0 },
+      buffer
+    )
+
+    return buffer.slice(0, this.borshInstructionSchema.getSpan(buffer))
+  }
 }
+
+export default Movie

@@ -13,13 +13,18 @@ import {
   NumberInputStepper,
   Textarea,
 } from "@chakra-ui/react"
+import * as web3 from "@solana/web3.js"
+import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 
-// const MOVIE_REVIEW_PROGRAM_ID = "CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN"
+const MOVIE_REVIEW_PROGRAM_ID = "CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN"
 
 function Form() {
   const [title, setTitle] = useState("")
   const [rating, setRating] = useState(0)
   const [message, setMessage] = useState("")
+
+  const { connection } = useConnection()
+  const { publicKey, sendTransaction } = useWallet()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -28,18 +33,47 @@ function Form() {
   }
 
   const handleTransactionSubmit = async (movie) => {
-    console.log(JSON.stringify(movie))
+    if (!publicKey) {
+      alert("Please connect your wallet")
+      return
+    }
+
+    const buffer = movie.serialize()
+    const transaction = new web3.Transaction()
+
+    const [pda] = await web3.PublicKey.findProgramAddress(
+      [publicKey.toBuffer(), Buffer.from(movie.title)],
+      new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID)
+    )
+
+    const instruction = new web3.TransactionInstruction({
+      keys: [
+        { pubkey: publicKey, isSigner: true, isWritable: false },
+        { pubkey: pda, isSigner: false, isWritable: true },
+        {
+          pubkey: web3.SystemProgram.programId,
+          isSigner: false,
+          isWritable: false,
+        },
+      ],
+      data: buffer,
+      programId: new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID),
+    })
+
+    transaction.add(instruction)
+
+    try {
+      let txSignature = await sendTransaction(transaction, connection)
+      console.log(
+        `Transaction submitted: https://explorer.solana.com/tx/${txSignature}?cluster=devnet`
+      )
+    } catch (e) {
+      alert(JSON.stringify(e))
+    }
   }
 
   return (
-    <Box
-      p={4}
-      display={{ md: "flex" }}
-      maxWidth="32rem"
-      borderWidth={1}
-      margin={2}
-      justifyContent="center"
-    >
+    <Box p={4} maxWidth="32rem" borderWidth={1} margin={2} justifyContent="center">
       <form onSubmit={handleSubmit}>
         <FormControl isRequired>
           <FormLabel color="black.200">Movie Title</FormLabel>

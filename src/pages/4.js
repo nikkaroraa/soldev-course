@@ -4,6 +4,7 @@ import Layout from "components/layout"
 import Guide from "components/guide"
 import MovieList from "components/movie-list"
 import Form from "components/form"
+import WalletProvider from "providers/wallet"
 
 function Page() {
   return (
@@ -35,4 +36,12 @@ function Page() {
   )
 }
 
-export default Page
+function PageWithProvider() {
+  return (
+    <WalletProvider>
+      <Page />
+    </WalletProvider>
+  )
+}
+
+export default PageWithProvider
