@@ -1,6 +1,6 @@
 import { Text, Box, Heading, Stack, Input, Button } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
-import { LAMPORTS_PER_SOL, Transaction, SystemProgram, PublicKey } from "@solana/web3.js"
+import { LAMPORTS_PER_SOL, Transaction, SystemProgram, PublicKey, TransactionInstruction } from "@solana/web3.js"
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui"
 import { useWallet, useConnection } from "@solana/wallet-adapter-react"
 
@@ -103,6 +103,47 @@ function TransferSol() {
   )
 }
 
+const PROGRAM_ADDRESS = "ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa"
+const PROGRAM_DATA_ADDRESS = "Ah9K7dQ8EHaZqcAsgBW8w37yN2eAy3koFmUn4x3CJtod"
+
+function PingProgram() {
+  const [status, setStatus] = useState("")
+  const { sendTransaction } = useWallet()
+  const { connection } = useConnection()
+
+  async function ping() {
+    setStatus("creating transaction!")
+    const transaction = new Transaction()
+
+    const programId = new PublicKey(PROGRAM_ADDRESS)
+    const programDataPubkey = new PublicKey(PROGRAM_DATA_ADDRESS)
+
+    const instruction = new TransactionInstruction({
+      keys: [{ pubkey: programDataPubkey, isSigner: false, isWritable: true }],
+      programId,
+    })
+
+    transaction.add(instruction)
+
+    const signature = await sendTransaction(transaction, connection)
+    console.log("tx signature:", signature)
+    setStatus("tx submitted:", signature)
+
+    await connection.confirmTransaction(signature)
+    setStatus("tx confirmed")
+  }
+
+  return (
+    <Stack align="flex-start">
+      <Heading as="h3" fontSize="md">
+        Ping Program: {PROGRAM_ADDRESS}
+      </Heading>
+      <Button onClick={ping}>Pinggggg!</Button>
+      <Text>{status}</Text>
+    </Stack>
+  )
+}
+
 function Page() {
   return (
     <Layout>
@@ -115,6 +156,7 @@ function Page() {
           <WalletMultiButton />
           <AccountBalance />
           <TransferSol />
+          <PingProgram />
         </Stack>
       </Box>
       <Guide />
