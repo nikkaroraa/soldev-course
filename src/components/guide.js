@@ -26,6 +26,9 @@ function Guide() {
           <CustomListItem href={"/3"}>03 - Interact with Wallets</CustomListItem>
           <CustomListItem href={"/4"}>04 - Serialize Custom Instruction Data</CustomListItem>
           <CustomListItem href={"/5"}>05 - Deserialize Custom Account Data</CustomListItem>
+          <CustomListItem href={"/6"}>
+            06 - Page, Order and Filter Custom Account Data
+          </CustomListItem>
         </UnorderedList>
       </Stack>
     </Box>
