@@ -11,7 +11,7 @@ function Page() {
     <Layout>
       <Box my={10}>
         <Heading as="h2" fontSize="xl">
-          05 - Deserialize Custom Account Data
+          Module 1: 04 - Serialize Custom Instruction Data
         </Heading>
       </Box>
 

@@ -26,8 +26,9 @@ function Page() {
   return (
     <Layout>
       <Box my={10}>
+        <Heading as="h2" my={5} fontSize="xl"></Heading>
         <Heading as="h2" my={5} fontSize="xl">
-          01 - Read balance from the Solana network
+          Module 1: 01 - Read balance from the Solana network
         </Heading>
 
         <Input placeholder="input address" value={address} onChange={onAddressChange} />

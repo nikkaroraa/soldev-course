@@ -62,7 +62,7 @@ function Page() {
     <Layout>
       <Box my={10}>
         <Heading as="h2" my={5} fontSize="xl">
-          02 - Create and send transaction to the network
+          Module 1: 02 - Create and send transaction to the network
         </Heading>
         <Button onClick={createAndSendTransaction}>send transaction</Button>
         {txSignature && <Text>txSignature: {txSignature}</Text>}

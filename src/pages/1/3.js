@@ -155,7 +155,7 @@ function Page() {
     <Layout>
       <Box my={10}>
         <Heading as="h2" my={5} fontSize="xl">
-          03 - Interact with Wallet
+          Module 1: 03 - Interact with Wallet
         </Heading>
 
         <Stack spacing={6}>

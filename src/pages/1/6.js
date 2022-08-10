@@ -11,7 +11,7 @@ function Page() {
     <Layout>
       <Box my={10}>
         <Heading as="h2" fontSize="xl">
-          04 - Serialize Custom Instruction Data
+          Module 1: 06 - Page, Order and Filter Custom Account Data
         </Heading>
       </Box>
 

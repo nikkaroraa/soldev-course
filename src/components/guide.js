@@ -21,12 +21,12 @@ function Guide() {
           Module 1: Client Interaction with the Solana Network
         </Heading>
         <UnorderedList>
-          <CustomListItem href={"/1"}>01 - Read data from the Solana network</CustomListItem>
-          <CustomListItem href={"/2"}>02 - Write data to the Solana network</CustomListItem>
-          <CustomListItem href={"/3"}>03 - Interact with Wallets</CustomListItem>
-          <CustomListItem href={"/4"}>04 - Serialize Custom Instruction Data</CustomListItem>
-          <CustomListItem href={"/5"}>05 - Deserialize Custom Account Data</CustomListItem>
-          <CustomListItem href={"/6"}>
+          <CustomListItem href={"/1/1"}>01 - Read data from the Solana network</CustomListItem>
+          <CustomListItem href={"/1/2"}>02 - Write data to the Solana network</CustomListItem>
+          <CustomListItem href={"/1/3"}>03 - Interact with Wallets</CustomListItem>
+          <CustomListItem href={"/1/4"}>04 - Serialize Custom Instruction Data</CustomListItem>
+          <CustomListItem href={"/1/5"}>05 - Deserialize Custom Account Data</CustomListItem>
+          <CustomListItem href={"/1/6"}>
             06 - Page, Order and Filter Custom Account Data
           </CustomListItem>
         </UnorderedList>

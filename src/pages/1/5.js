@@ -11,7 +11,7 @@ function Page() {
     <Layout>
       <Box my={10}>
         <Heading as="h2" fontSize="xl">
-          06 - Page, Order and Filter Custom Account Data
+          Module 1: 05 - Deserialize Custom Account Data
         </Heading>
       </Box>
 
