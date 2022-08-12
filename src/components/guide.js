@@ -11,17 +11,17 @@ function CustomListItem({ href, ...props }) {
 
 function Guide() {
   return (
-    <Box border="1px" borderColor="#ccc" p={3}>
-      <Heading as="h2" mb={8} fontSize="lg">
+    <Box border="1px" borderColor="#ccc" p={5}>
+      <Heading as="h2" mb={8} fontSize="2xl">
         Guide
       </Heading>
 
-      <Stack>
-        <Stack ml={2}>
+      <Stack spacing={10}>
+        <Stack>
           <Heading as="h3" fontSize={"md"}>
             Module 1: Client Interaction with the Solana Network
           </Heading>
-          <UnorderedList>
+          <UnorderedList ml={2}>
             <CustomListItem href={"/1/1"}>01 - Read data from the Solana network</CustomListItem>
             <CustomListItem href={"/1/2"}>02 - Write data to the Solana network</CustomListItem>
             <CustomListItem href={"/1/3"}>03 - Interact with Wallets</CustomListItem>
@@ -32,13 +32,16 @@ function Guide() {
             </CustomListItem>
           </UnorderedList>
         </Stack>
-        <Stack ml={2}>
+        <Stack>
           <Heading as="h3" fontSize={"md"}>
             Module 2: Client Interaction with common Solana Programs
           </Heading>
-          <UnorderedList>
+          <UnorderedList ml={2}>
             <CustomListItem href={"/2/1"}>
               01 - Create tokens with the Token program
+            </CustomListItem>
+            <CustomListItem href={"/2/2"}>
+              02 - Swap Tokens with the Token Swap Program
             </CustomListItem>
           </UnorderedList>
         </Stack>
