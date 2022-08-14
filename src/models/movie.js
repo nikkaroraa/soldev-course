@@ -32,15 +32,15 @@ class Movie {
 
   borshInstructionSchema = borsh.struct([
     borsh.u8("variant"),
-    borsh.u8("rating"),
     borsh.str("title"),
+    borsh.u8("rating"),
     borsh.str("description"),
   ])
 
   static borshAccountSchema = borsh.struct([
     borsh.bool("initialized"),
-    borsh.u8("rating"),
     borsh.str("title"),
+    borsh.u8("rating"),
     borsh.str("description"),
   ])
 

@@ -52,6 +52,7 @@ function Guide() {
           </Heading>
           <UnorderedList ml={2}>
             <CustomListItem href={"/3/1"}>01 - Hello World</CustomListItem>
+            <CustomListItem href={"/3/2"}>02 - Handle Instruction Data</CustomListItem>
           </UnorderedList>
         </Stack>
       </Stack>

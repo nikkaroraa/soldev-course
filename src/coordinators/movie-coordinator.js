@@ -1,7 +1,7 @@
 import * as web3 from "@solana/web3.js"
 import bs58 from "bs58"
 
-import Movie from "models/Movie"
+import Movie from "models/movie"
 import { MOVIE_REVIEW_PROGRAM_ID } from "constants/programs"
 
 class MovieCoordinator {
