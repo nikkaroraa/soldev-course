@@ -46,6 +46,14 @@ function Guide() {
             <CustomListItem href={"/2/3"}>03 - Create Solana NFTs with Metaplex</CustomListItem>
           </UnorderedList>
         </Stack>
+        <Stack>
+          <Heading as="h3" fontSize={"md"}>
+            Module 3: Basic Solana Program Development
+          </Heading>
+          <UnorderedList ml={2}>
+            <CustomListItem href={"/3/1"}>01 - Hello World</CustomListItem>
+          </UnorderedList>
+        </Stack>
       </Stack>
     </Box>
   )
