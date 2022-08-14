@@ -43,6 +43,7 @@ function Guide() {
             <CustomListItem href={"/2/2"}>
               02 - Swap Tokens with the Token Swap Program
             </CustomListItem>
+            <CustomListItem href={"/2/3"}>03 - Create Solana NFTs with Metaplex</CustomListItem>
           </UnorderedList>
         </Stack>
       </Stack>
