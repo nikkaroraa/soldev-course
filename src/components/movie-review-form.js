@@ -16,9 +16,7 @@ import {
 import * as web3 from "@solana/web3.js"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
 
-import { CUSTOM_MOVIE_REVIEW_PROGRAM_ID } from "constants/programs"
-
-function Form() {
+function Form({ programId }) {
   const [title, setTitle] = useState("")
   const [rating, setRating] = useState(0)
   const [message, setMessage] = useState("")
@@ -44,7 +42,7 @@ function Form() {
     const instruction = new web3.TransactionInstruction({
       keys: [],
       data: buffer,
-      programId: new web3.PublicKey(CUSTOM_MOVIE_REVIEW_PROGRAM_ID),
+      programId,
     })
 
     transaction.add(instruction)

@@ -39,9 +39,9 @@ class Movie {
 
   static borshAccountSchema = borsh.struct([
     borsh.bool("initialized"),
-    borsh.str("title"),
     borsh.u8("rating"),
     borsh.str("description"),
+    borsh.str("title"),
   ])
 
   serialize() {

@@ -1,23 +1,17 @@
-import * as web3 from "@solana/web3.js"
 import bs58 from "bs58"
 
 import Movie from "models/movie"
-import { MOVIE_REVIEW_PROGRAM_ID } from "constants/programs"
 
 class MovieCoordinator {
   static accounts = []
 
-  static async prefetchAccounts(connection, search) {
-    const accounts = await connection.getProgramAccounts(
-      new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID),
-      {
-        dataSlice: { offset: 2, length: 18 }, // title, taking 18 as the length of the string
-        filters:
-          search === ""
-            ? []
-            : [{ memcmp: { offset: 6, bytes: bs58.encode(Buffer.from(search)) } }],
-      }
-    )
+  static async prefetchAccounts(connection, search, programId) {
+    console.log({ programId: programId.toBase58() })
+    const accounts = await connection.getProgramAccounts(programId, {
+      dataSlice: { offset: 2, length: 18 }, // title, taking 18 as the length of the string
+      filters:
+        search === "" ? [] : [{ memcmp: { offset: 6, bytes: bs58.encode(Buffer.from(search)) } }],
+    })
 
     accounts.sort((accountA, accountB) => {
       const titleLengthA = accountA.account.data.readUint32LE(0)
@@ -31,9 +25,9 @@ class MovieCoordinator {
     this.accounts = accounts.map((account) => account.pubkey)
   }
 
-  static async fetchPage(connection, page, perPage, search, reload = false) {
+  static async fetchPage(connection, programId, page, perPage, search, reload = false) {
     if (this.accounts.length === 0 || reload) {
-      await this.prefetchAccounts(connection, search)
+      await this.prefetchAccounts(connection, search, programId)
     }
 
     const paginatedPublicKeys = this.accounts.slice((page - 1) * perPage, page * perPage)

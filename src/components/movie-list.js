@@ -7,7 +7,7 @@ import Card from "./card"
 
 const PAGE_SIZE = 5
 
-function MovieList() {
+function MovieList({ programId }) {
   const [movies, setMovies] = useState([])
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState("")
@@ -15,10 +15,10 @@ function MovieList() {
   const { connection } = useConnection()
 
   useEffect(() => {
-    MovieCoordinator.fetchPage(connection, page, PAGE_SIZE, search, search !== "").then((movies) =>
-      setMovies(movies)
+    MovieCoordinator.fetchPage(connection, programId, page, PAGE_SIZE, search, search !== "").then(
+      (movies) => setMovies(movies)
     )
-  }, [connection, page, search])
+  }, [connection, programId, page, search])
 
   return (
     <div>
